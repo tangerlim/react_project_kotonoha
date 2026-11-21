@@ -1,0 +1,61 @@
+.box {
+  padding: var(--space-5);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.title {
+  font-size: 15px;
+  margin-bottom: var(--space-4);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 80px 1fr 72px;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 14px;
+}
+
+.label {
+  color: var(--color-ink-soft);
+}
+
+.track {
+  height: 12px;
+  border-radius: 999px;
+  background: #efe9dd;
+  overflow: hidden;
+}
+
+/* 페이지에 들어올 때 막대가 왼쪽에서 자라나는 애니메이션 */
+.fill {
+  height: 100%;
+  border-radius: 999px;
+  animation: grow 0.8s ease-out;
+  transform-origin: left;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.value small {
+  color: var(--color-ink-faint);
+}

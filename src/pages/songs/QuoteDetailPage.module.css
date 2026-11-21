@@ -1,0 +1,117 @@
+/* 가사집 한 페이지 느낌의 상자 */
+.sheet {
+  margin-top: var(--space-3);
+  padding: var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.text {
+  margin: 0;
+  font-size: 26px;
+  line-height: 2.2;
+}
+
+.translation {
+  margin: var(--space-3) 0 0;
+  color: var(--color-ink-soft);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin: var(--space-5) 0 0;
+  font-size: 13px;
+}
+
+.meta dt {
+  color: var(--color-ink-faint);
+}
+
+.meta dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.memo {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: #fbf3d9;
+  font-size: 14px;
+}
+
+.words {
+  margin-top: var(--space-5);
+}
+
+.wordsTitle {
+  font-size: 16px;
+  margin-bottom: var(--space-2);
+}
+
+.noWords {
+  margin: 0;
+  color: var(--color-ink-faint);
+  font-size: 14px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.table th {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  background: #faf6ee;
+}
+
+.table td.ja,
+.table td:first-child {
+  font-size: 17px;
+}
+
+/* 단어장에서 누르고 온 단어 강조 */
+.highlight td {
+  background: #fbf0c9;
+  animation: flash 1.2s ease-out;
+}
+
+@keyframes flash {
+  from {
+    background: #f4d77a;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+@media (max-width: 720px) {
+  .sheet {
+    padding: var(--space-4);
+  }
+
+  .text {
+    font-size: 21px;
+  }
+}

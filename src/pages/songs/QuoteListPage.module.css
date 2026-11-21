@@ -1,0 +1,9 @@
+.title {
+  font-size: 17px;
+  margin-bottom: var(--space-3);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-3);
+}

@@ -1,0 +1,30 @@
+.empty {
+  padding: var(--space-7) var(--space-4);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-md);
+  text-align: center;
+  background: rgba(255, 253, 248, 0.6);
+}
+
+.icon {
+  font-family: var(--font-mincho);
+  font-size: 40px;
+  color: #cfc4b0;
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  margin: 0;
+  font-weight: 500;
+}
+
+.description {
+  margin: var(--space-1) 0 0;
+  font-size: 14px;
+  color: var(--color-ink-faint);
+}
+
+.action {
+  margin-top: var(--space-4);
+}

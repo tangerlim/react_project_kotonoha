@@ -1,0 +1,232 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* 오늘의 문장: 남색 바탕의 큰 카드 */
+.hero {
+  position: relative;
+  padding: var(--space-6) var(--space-7);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 92% 10%, rgba(255, 255, 255, 0.08) 0 120px, transparent 121px),
+    var(--color-accent);
+  color: var(--color-paper);
+  overflow: hidden;
+}
+
+.heroHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.heroLabel {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.shuffle {
+  padding: 4px 12px;
+  border: 1px solid rgba(246, 241, 231, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.shuffle:hover {
+  background: rgba(246, 241, 231, 0.12);
+}
+
+.heroQuote {
+  display: block;
+}
+
+.heroText {
+  margin: 0;
+  font-size: 30px;
+  line-height: 2.1;
+}
+
+.heroText rt {
+  color: rgba(246, 241, 231, 0.7);
+}
+
+.heroTranslation {
+  margin: var(--space-2) 0 0;
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.heroSource {
+  margin: var(--space-3) 0 0;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(246, 241, 231, 0.2);
+}
+
+.welcome {
+  margin-right: auto;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* 남색 배경 위의 버튼 색 바꾸기 */
+.heroActions a:first-of-type {
+  background: var(--color-paper);
+  color: var(--color-accent);
+}
+
+/* 이용 흐름 5단계 */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: 13px;
+  color: var(--color-ink-soft);
+}
+
+.step strong {
+  font-size: 15px;
+  color: var(--color-ink);
+}
+
+.stepMark {
+  font-size: 26px;
+  color: var(--color-accent);
+  line-height: 1.3;
+}
+
+/* 단계 사이 화살표 */
+.step:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -13px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  color: var(--color-ink-faint);
+  font-size: 14px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-3);
+}
+
+.sectionHead h2 {
+  font-size: 18px;
+}
+
+.feed {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.posts li + li {
+  border-top: 1px solid var(--color-line);
+}
+
+.postItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-2);
+  row-gap: 2px;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  transition: background 0.15s;
+}
+
+.postItem:hover {
+  background: #faf6ee;
+}
+
+.postTitle {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postMeta {
+  grid-column: 2;
+  font-size: 12px;
+  color: var(--color-ink-faint);
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .step::after {
+    display: none;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: var(--space-5);
+  }
+
+  .heroText {
+    font-size: 22px;
+  }
+
+  .welcome {
+    flex-basis: 100%;
+    margin-bottom: var(--space-2);
+  }
+}

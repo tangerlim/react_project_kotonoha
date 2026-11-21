@@ -1,0 +1,21 @@
+.page {
+  padding: var(--space-7) var(--space-4);
+  text-align: center;
+}
+
+.code {
+  margin: 0;
+  font-size: 72px;
+  line-height: 1.2;
+  color: var(--color-accent);
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: 20px;
+}
+
+.desc {
+  margin: var(--space-2) 0 var(--space-5);
+  color: var(--color-ink-soft);
+}

@@ -1,0 +1,345 @@
+// 처음 실행할 때 사용하는 샘플 데이터
+// localStorage에 저장된 데이터가 없으면 이 데이터로 시작한다.
+//
+// ※ 저작권 문제를 피하기 위해 노래, 가수, 가사는 모두 직접 지어낸 가상의 것이다.
+// ※ 비밀번호를 평문으로 저장하는 것은 학습용 데모이기 때문이다.
+//    실제 서비스라면 서버에서 암호화(해시)해서 저장해야 한다.
+
+export const seedUsers = [
+  {
+    id: 'u1',
+    username: 'admin',
+    nickname: '소라',
+    password: 'admin123',
+    jlptLevel: 'N1',
+    role: 'admin',
+    createdAt: '2026-09-01T09:00:00.000Z',
+  },
+  {
+    id: 'u2',
+    username: 'mina',
+    nickname: '미나',
+    password: 'mina123',
+    jlptLevel: 'N3',
+    role: 'member',
+    createdAt: '2026-09-03T10:00:00.000Z',
+  },
+  {
+    id: 'u3',
+    username: 'jun',
+    nickname: '준',
+    password: 'jun123',
+    jlptLevel: 'N4',
+    role: 'member',
+    createdAt: '2026-09-05T11:00:00.000Z',
+  },
+];
+
+// 로그인 화면에 안내할 데모 계정
+export const demoAccounts = [
+  { username: 'admin', password: 'admin123', label: '운영진 소라' },
+  { username: 'mina', password: 'mina123', label: '동아리원 미나' },
+  { username: 'jun', password: 'jun123', label: '동아리원 준' },
+];
+
+// 노래 (genre: 'jpop' | 'anime' | 'vocaloid', status: 'listening' | 'done' | 'wish')
+// progress = 가사를 외운 정도(0~100)
+export const seedSongs = [
+  {
+    id: 's1',
+    ownerId: 'u2',
+    titleJa: '夜明けのメロディー',
+    titleKo: '새벽의 멜로디',
+    artist: 'ハルカゼ',
+    genre: 'jpop',
+    status: 'listening',
+    progress: 45,
+    createdAt: '2026-10-02T12:00:00.000Z',
+  },
+  {
+    id: 's2',
+    ownerId: 'u2',
+    titleJa: '雨音のワルツ',
+    titleKo: '빗소리의 왈츠',
+    artist: '白石ことり',
+    genre: 'jpop',
+    status: 'done',
+    progress: 100,
+    createdAt: '2026-10-05T12:00:00.000Z',
+  },
+  {
+    id: 's3',
+    ownerId: 'u3',
+    titleJa: '星屑ドライブ',
+    titleKo: '별가루 드라이브',
+    artist: 'ネオンP',
+    genre: 'vocaloid',
+    status: 'listening',
+    progress: 20,
+    createdAt: '2026-10-10T12:00:00.000Z',
+  },
+  {
+    id: 's4',
+    ownerId: 'u1',
+    titleJa: '君と見た海',
+    titleKo: '너와 본 바다',
+    artist: '青山ゆう',
+    genre: 'anime',
+    status: 'listening',
+    progress: 70,
+    createdAt: '2026-10-12T12:00:00.000Z',
+  },
+  {
+    id: 's5',
+    ownerId: 'u3',
+    titleJa: '放課後シグナル',
+    titleKo: '방과 후 시그널',
+    artist: '朝霧ひかり',
+    genre: 'anime',
+    status: 'wish',
+    progress: 0,
+    createdAt: '2026-10-20T12:00:00.000Z',
+  },
+];
+
+// 복습 기록의 처음 값
+const emptyReview = { known: 0, unknown: 0, lastResult: null };
+
+// 수집한 문장 (= 마음에 든 가사 한 줄)
+export const seedQuotes = [
+  {
+    id: 'q1',
+    songId: 's1',
+    ownerId: 'u2',
+    text: '{夜明|よあ}けの{空|そら}に、{君|きみ}の{名前|なまえ}を{描|えが}いた。',
+    translation: '새벽하늘에 너의 이름을 그렸어.',
+    location: '1절',
+    memo: '첫 소절이 좋아서 저장!',
+    words: [
+      { word: '夜明け', reading: 'よあけ', meaning: '새벽' },
+      { word: '名前', reading: 'なまえ', meaning: '이름' },
+      { word: '描く', reading: 'えがく', meaning: '그리다' },
+    ],
+    review: { known: 2, unknown: 1, lastResult: 'known' },
+    createdAt: '2026-10-03T13:00:00.000Z',
+  },
+  {
+    id: 'q2',
+    songId: 's1',
+    ownerId: 'u2',
+    text: '{泣|な}いてもいいよ、{明日|あした}はまた{来|く}るから。',
+    translation: '울어도 괜찮아, 내일은 또 오니까.',
+    location: '후렴',
+    memo: '~てもいい: ~해도 된다',
+    words: [
+      { word: '泣く', reading: 'なく', meaning: '울다' },
+      { word: '明日', reading: 'あした', meaning: '내일' },
+    ],
+    review: { ...emptyReview },
+    createdAt: '2026-10-08T13:00:00.000Z',
+  },
+  {
+    id: 'q3',
+    songId: 's1',
+    ownerId: 'u2',
+    text: '{振|ふ}り{返|かえ}るたびに、{遠|とお}くなる{背中|せなか}。',
+    translation: '돌아볼 때마다 멀어지는 뒷모습.',
+    location: '2절',
+    memo: '~たびに: ~할 때마다',
+    words: [
+      { word: '振り返る', reading: 'ふりかえる', meaning: '뒤돌아보다' },
+      { word: '背中', reading: 'せなか', meaning: '등, 뒷모습' },
+    ],
+    review: { known: 0, unknown: 2, lastResult: 'unknown' },
+    createdAt: '2026-10-15T13:00:00.000Z',
+  },
+  {
+    id: 'q4',
+    songId: 's2',
+    ownerId: 'u2',
+    text: '{雨|あめ}が{止|や}むまで、もう{少|すこ}しだけそばにいて。',
+    translation: '비가 그칠 때까지 조금만 더 곁에 있어 줘.',
+    location: '1절',
+    memo: '',
+    words: [
+      { word: '止む', reading: 'やむ', meaning: '(비 등이) 그치다' },
+      { word: '少し', reading: 'すこし', meaning: '조금' },
+      { word: 'そば', reading: '', meaning: '곁, 옆' },
+    ],
+    review: { ...emptyReview },
+    createdAt: '2026-10-06T13:00:00.000Z',
+  },
+  {
+    id: 'q5',
+    songId: 's2',
+    ownerId: 'u2',
+    text: '{傘|かさ}の{下|した}で{踊|おど}る、{二人|ふたり}だけのワルツ。',
+    translation: '우산 아래서 춤추는, 둘만의 왈츠.',
+    location: '후렴',
+    memo: '踊る라는 단어를 처음 알았다',
+    words: [
+      { word: '傘', reading: 'かさ', meaning: '우산' },
+      { word: '踊る', reading: 'おどる', meaning: '춤추다' },
+      { word: '二人', reading: 'ふたり', meaning: '두 사람' },
+    ],
+    review: { known: 1, unknown: 0, lastResult: 'known' },
+    createdAt: '2026-10-09T13:00:00.000Z',
+  },
+  {
+    id: 'q6',
+    songId: 's3',
+    ownerId: 'u3',
+    text: '{星屑|ほしくず}を{集|あつ}めて、{夜|よる}の{街|まち}を{走|はし}り{出|だ}す。',
+    translation: '별가루를 모아서, 밤거리를 달리기 시작해.',
+    location: '1절',
+    memo: '빠른 곡이라 가사를 보면서 들었다',
+    words: [
+      { word: '星屑', reading: 'ほしくず', meaning: '별가루, 작은 별들' },
+      { word: '集める', reading: 'あつめる', meaning: '모으다' },
+      { word: '走り出す', reading: 'はしりだす', meaning: '달리기 시작하다' },
+    ],
+    review: { ...emptyReview },
+    createdAt: '2026-10-11T13:00:00.000Z',
+  },
+  {
+    id: 'q7',
+    songId: 's3',
+    ownerId: 'u3',
+    text: '{信号|しんごう}が{青|あお}に{変|か}わる{前|まえ}に、{答|こた}えを{聞|き}かせて。',
+    translation: '신호가 파란불로 바뀌기 전에, 대답을 들려줘.',
+    location: '후렴',
+    memo: '',
+    words: [
+      { word: '信号', reading: 'しんごう', meaning: '신호, 신호등' },
+      { word: '答え', reading: 'こたえ', meaning: '대답' },
+    ],
+    review: { ...emptyReview },
+    createdAt: '2026-10-18T13:00:00.000Z',
+  },
+  {
+    id: 'q8',
+    songId: 's4',
+    ownerId: 'u1',
+    text: '{波|なみ}の{音|おと}だけが、{君|きみ}の{返事|へんじ}のように{聞|き}こえた。',
+    translation: '파도 소리만이 너의 대답처럼 들렸어.',
+    location: '2절',
+    memo: '~のように: ~처럼',
+    words: [
+      { word: '波', reading: 'なみ', meaning: '파도' },
+      { word: '返事', reading: 'へんじ', meaning: '대답, 답장' },
+    ],
+    review: { ...emptyReview },
+    createdAt: '2026-10-14T13:00:00.000Z',
+  },
+  {
+    id: 'q9',
+    songId: 's4',
+    ownerId: 'u1',
+    text: '{言葉|ことば}にできない{気持|きも}ちを、このメロディーに{乗|の}せて。',
+    translation: '말로 할 수 없는 마음을, 이 멜로디에 실어서.',
+    location: '마지막 후렴',
+    memo: '~に乗せて: ~에 실어서',
+    words: [
+      { word: '言葉', reading: 'ことば', meaning: '말' },
+      { word: '気持ち', reading: 'きもち', meaning: '마음, 기분' },
+      { word: '乗せる', reading: 'のせる', meaning: '싣다, 태우다' },
+    ],
+    review: { ...emptyReview },
+    createdAt: '2026-10-21T13:00:00.000Z',
+  },
+];
+
+export const seedPosts = [
+  {
+    id: 'p1',
+    category: 'notice',
+    title: '코토노하 사용 안내',
+    content:
+      '동아리 가사 수집 공간 코토노하에 오신 것을 환영합니다!\n\n1. 플레이리스트에 좋아하는 노래를 등록하세요.\n2. 마음에 든 가사를 수집하세요. 원문에 {漢字|かんじ} 형식으로 쓰면 히라가나가 붙습니다.\n3. 수집한 단어는 마이페이지 단어장에 자동으로 모입니다.\n4. 복습 카드로 가사를 외워 보세요.',
+    authorId: 'u1',
+    views: 24,
+    createdAt: '2026-10-01T09:00:00.000Z',
+    updatedAt: '2026-10-01T09:00:00.000Z',
+  },
+  {
+    id: 'p2',
+    category: 'notice',
+    title: '11월 정기 모임 공지',
+    content: '11월 정기 모임은 셋째 주 금요일 저녁에 동아리방에서 진행합니다.\n각자 이번 달에 수집한 가사 한 줄씩 소개해 주세요!',
+    authorId: 'u1',
+    views: 15,
+    createdAt: '2026-11-02T09:00:00.000Z',
+    updatedAt: '2026-11-02T09:00:00.000Z',
+  },
+  {
+    id: 'p3',
+    category: 'review',
+    title: '「雨音のワルツ」 완창 성공했어요',
+    content: '템포가 느린 곡이라 N3 수준에서도 따라 부르기 편했어요.\n비 오는 날 분위기의 가사가 정말 예뻐서 많이 저장했습니다.',
+    authorId: 'u2',
+    views: 9,
+    createdAt: '2026-10-25T15:00:00.000Z',
+    updatedAt: '2026-10-25T15:00:00.000Z',
+  },
+  {
+    id: 'p4',
+    category: 'review',
+    title: '보컬로이드 곡 「星屑ドライブ」 추천합니다',
+    content: '빠른 곡이지만 후렴이 반복돼서 외우기 좋아요. 의성어가 많아서 공부가 됩니다.',
+    authorId: 'u3',
+    views: 6,
+    createdAt: '2026-11-05T15:00:00.000Z',
+    updatedAt: '2026-11-05T15:00:00.000Z',
+  },
+  {
+    id: 'p5',
+    category: 'question',
+    title: '「~たびに」와 「~ごとに」 차이가 뭔가요?',
+    content: '振り返るたびに… 라는 가사에서 たびに 대신 ごとに를 써도 되나요?',
+    authorId: 'u2',
+    views: 11,
+    createdAt: '2026-11-08T15:00:00.000Z',
+    updatedAt: '2026-11-08T15:00:00.000Z',
+  },
+  {
+    id: 'p6',
+    category: 'question',
+    title: '星屑를 자연스럽게 번역하려면?',
+    content: '"별 부스러기"라고 직역하니까 어색한데, 좋은 번역 있을까요?',
+    authorId: 'u3',
+    views: 4,
+    createdAt: '2026-11-12T15:00:00.000Z',
+    updatedAt: '2026-11-12T15:00:00.000Z',
+  },
+];
+
+export const seedComments = [
+  {
+    id: 'c1',
+    postId: 'p3',
+    authorId: 'u3',
+    content: '저도 들어 보고 싶어요! 플레이리스트에 추가했습니다.',
+    createdAt: '2026-10-26T10:00:00.000Z',
+  },
+  {
+    id: 'c2',
+    postId: 'p5',
+    authorId: 'u1',
+    content: 'たびに는 "그 일이 있을 때마다 매번", ごとに는 "일정한 단위마다"라는 느낌이 강해요. 이 가사는 たびに가 자연스럽습니다.',
+    createdAt: '2026-11-08T18:00:00.000Z',
+  },
+  {
+    id: 'c3',
+    postId: 'p5',
+    authorId: 'u2',
+    content: '감사합니다! 이해됐어요.',
+    createdAt: '2026-11-08T19:00:00.000Z',
+  },
+  {
+    id: 'c4',
+    postId: 'p6',
+    authorId: 'u2',
+    content: '"별가루"나 "쏟아지는 별빛" 어떨까요?',
+    createdAt: '2026-11-12T20:00:00.000Z',
+  },
+];

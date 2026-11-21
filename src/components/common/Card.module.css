@@ -1,0 +1,23 @@
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.hoverable {
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.hoverable:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: #d6ccb9;
+}
+
+@media (max-width: 720px) {
+  .card {
+    padding: var(--space-4);
+  }
+}

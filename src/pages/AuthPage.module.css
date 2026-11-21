@@ -1,0 +1,56 @@
+/* LoginPage, SignupPage가 함께 쓰는 스타일 */
+.page {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-4);
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: var(--space-6);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: var(--space-5);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.title small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-ink-faint);
+}
+
+.notice {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: 13px;
+  text-align: center;
+}
+
+.footer {
+  margin: var(--space-5) 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+
+.footer a {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .card {
+    padding: var(--space-5);
+  }
+}
